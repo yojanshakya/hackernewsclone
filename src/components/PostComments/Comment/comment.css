@@ -1,0 +1,12 @@
+.comment {
+	background-color: #EDEDED;
+	padding: 20px 10px;
+	border-radius: 5px;
+}
+
+.comment-dark{
+	background-color: #2A2E2F;
+	padding: 20px 10px;
+	border-radius: 5px;
+}
+

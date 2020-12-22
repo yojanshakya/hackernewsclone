@@ -1,25 +1,50 @@
-import logo from './logo.svg';
+import React from 'react'
+import { Nav,PostComments,Posts,UserProfile } from './components';
+import { BrowserRouter as Router,Route,Switch } from 'react-router-dom';
 import './App.css';
 
+import { themeContext } from './contexts/theme-context.js';
+//todo : code splitting
+
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+	let [theme,setTheme] = React.useState('light');
+
+	return (
+		<themeContext.Provider value={theme}>
+
+			<div  className ={`App  ${theme=='dark'? 'dark': null}`}>
+
+				<div className={`container  `}>
+					<Router>
+						<Nav setTheme={setTheme} theme={theme}></Nav>
+
+						<Switch>
+
+							<Route path='/user'>
+								<UserProfile>
+								</UserProfile>
+							</Route>
+
+							<Route path='/post'>
+								<PostComments />
+							</Route>
+
+							<Route path='/new'>
+								<Posts />
+							</Route>
+
+							<Route path='/'>
+								<Posts />
+							</Route>
+
+						</Switch>
+					</Router>
+				</div>
+			</div>
+		</themeContext.Provider>
+	);
 }
 
 export default App;
